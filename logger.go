@@ -25,7 +25,7 @@ const (
 )
 
 type RGBCode struct {
-	r, g, b uint8
+	R, G, B escCode
 }
 
 type logLevel string
@@ -59,7 +59,7 @@ func msgBuilder(msg string, codes ...escCode) string {
 
 func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
 	resetOption := optionBuilder(reset)
-	style := optionBuilder(code, dim, escCode(rgb.r), escCode(rgb.g), escCode(rgb.b))
+	style := optionBuilder(code, dim, rgb.R, rgb.G, rgb.B)
 	return style + msg + resetOption
 }
 
