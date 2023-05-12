@@ -1,15 +1,25 @@
 package logger
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type escCode uint8
 
+// option codes
 const (
 	reset      escCode = 0
 	dim        escCode = 2
 	slowblink  escCode = 5
 	foreground escCode = 38
 	background escCode = 48
+)
+
+// colors
+const (
+	RED    escCode = 9
+	YELLOW escCode = 11
+	AQUA   escCode = 14
 )
 
 type RGBCode struct {
