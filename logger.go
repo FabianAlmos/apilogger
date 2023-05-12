@@ -61,7 +61,7 @@ func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
 }
 
 func constructLogFormat(level logLevel, msg string) string {
-	time := time.Now().Format("2006-01-02 - 15:04:05 MST")
+	time := time.Now().Format("2006-01-02::15:04:05 MST")
 	return fmt.Sprintf("[ %s - %s ]:\t", level, time) + msg
 }
 
