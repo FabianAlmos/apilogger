@@ -7,6 +7,8 @@ import (
 
 type escCode uint8
 type logLevel string
+type logOutCode byte
+
 type RGBCode struct {
 	R, G, B escCode
 }
