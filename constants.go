@@ -28,8 +28,8 @@ const (
 
 // log out codes
 const (
-	_LOCAL    logOutCode = 0x01
-	_TERMINAL logOutCode = 0x02
-	_NETLOG   logOutCode = 0x04
-	_ALL      logOutCode = 0x08
+	LOCAL    logOutCode = 0x01
+	TERMINAL logOutCode = 0x02
+	NETLOG   logOutCode = 0x04
+	ALL      logOutCode = 0x08
 )
