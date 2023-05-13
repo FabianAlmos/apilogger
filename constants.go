@@ -31,8 +31,5 @@ const (
 	_LOCAL    logOutCode = 0x01
 	_TERMINAL logOutCode = 0x02
 	_NETLOG   logOutCode = 0x04
-	_LOC_TERM logOutCode = 0x08
-	_LOC_NET  logOutCode = 0x10
-	_TERM_NET logOutCode = 0x20
-	_ALL      logOutCode = 0x40
+	_ALL      logOutCode = 0x08
 )
