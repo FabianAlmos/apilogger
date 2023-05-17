@@ -18,6 +18,12 @@ func optionBuilder(codes ...escCode) string {
 	return res
 }
 
+func write(msg string) {
+	writer := bufio.NewWriter(logFile)
+	writer.WriteString(msg + "\n")
+	writer.Flush()
+}
+
 func msgBuilder(msg string, codes ...escCode) string {
 	resetOption := optionBuilder(reset)
 	style := optionBuilder(codes...)
@@ -30,17 +36,13 @@ func msgBuilder(msg string, codes ...escCode) string {
 		}
 	case Config.Out&FILE == FILE:
 		{
-			writer := bufio.NewWriter(logFile)
-			writer.WriteString(msg + "\n")
-			writer.Flush()
+			write(msg)
 			return msg
 		}
 	case Config.Out&ALL == ALL:
 		{
 			fmt.Println(builtMsg)
-			writer := bufio.NewWriter(logFile)
-			writer.WriteString(msg + "\n")
-			writer.Flush()
+			write(msg)
 			return msg
 		}
 	default:
@@ -60,17 +62,13 @@ func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
 		}
 	case Config.Out&FILE == FILE:
 		{
-			writer := bufio.NewWriter(logFile)
-			writer.WriteString(msg + "\n")
-			writer.Flush()
+			write(msg)
 			return msg
 		}
 	case Config.Out&ALL == ALL:
 		{
 			fmt.Println(builtMsg)
-			writer := bufio.NewWriter(logFile)
-			writer.WriteString(msg + "\n")
-			writer.Flush()
+			write(msg)
 			return msg
 		}
 	default:
