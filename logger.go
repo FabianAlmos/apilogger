@@ -8,7 +8,7 @@ import (
 )
 
 func Start() {
-	if Config.Out&FILE == FILE {
+	if Config.Out&FILE == FILE || Config.Out&ALL == ALL {
 		var perms fs.FileMode = 0755
 		_ = os.Mkdir("logs", perms)
 		fileName := "logs/log-" + time.Now().Format("2006-01-02-15-04-05MST") + ".txt"
