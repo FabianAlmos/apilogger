@@ -7,14 +7,7 @@ import (
 	"time"
 )
 
-var Config LoggerConfig = LoggerConfig{
-	Out:    TERMINAL,
-	Server: "",
-}
-
-var logFile *os.File = new(os.File)
-
-func init() {
+func Start() {
 	if Config.Out&FILE == FILE {
 		var perms fs.FileMode = 0755
 		_ = os.Mkdir("logs", perms)
@@ -25,6 +18,10 @@ func init() {
 		}
 		logFile = file
 	}
+}
+
+func Stop() {
+	logFile.Close()
 }
 
 func Info(msg string) string {
@@ -55,8 +52,4 @@ func Debug(msg string) string {
 func DebugRGB(msg string, rgb RGBCode) string {
 	message := constructLogFormat(debug, msg)
 	return msgBuilderRGB(message, foreground, rgb)
-}
-
-func StopLogging() {
-	logFile.Close()
 }
