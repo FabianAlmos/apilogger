@@ -11,15 +11,17 @@ var Config LoggerConfig = LoggerConfig{
 	Server: "",
 }
 
-var logFile *os.File
+var logFile *os.File = new(os.File)
 
 func init() {
-	fileName := "logs/log-" + time.Now().Format("2006-01-02-15:04:05 MST") + ".txt"
-	file, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0755)
-	if err != nil {
-		fmt.Println(err)
+	if Config.Out&FILE == FILE {
+		fileName := "logs/log-" + time.Now().Format("2006-01-02-15:04:05 MST") + ".txt"
+		file, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0755)
+		if err != nil {
+			fmt.Println(err)
+		}
+		logFile = file
 	}
-	logFile = file
 }
 
 func Info(msg string) string {
