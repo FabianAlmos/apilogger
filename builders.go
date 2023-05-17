@@ -32,6 +32,7 @@ func msgBuilder(msg string, codes ...escCode) string {
 		{
 			writer := bufio.NewWriter(logFile)
 			writer.WriteString(msg + "\n")
+			writer.Flush()
 			return msg
 		}
 	case Config.Out&ALL == ALL:
@@ -39,6 +40,7 @@ func msgBuilder(msg string, codes ...escCode) string {
 			fmt.Println(builtMsg)
 			writer := bufio.NewWriter(logFile)
 			writer.WriteString(msg + "\n")
+			writer.Flush()
 			return msg
 		}
 	default:
@@ -60,6 +62,7 @@ func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
 		{
 			writer := bufio.NewWriter(logFile)
 			writer.WriteString(msg + "\n")
+			writer.Flush()
 			return msg
 		}
 	case Config.Out&ALL == ALL:
@@ -67,6 +70,7 @@ func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
 			fmt.Println(builtMsg)
 			writer := bufio.NewWriter(logFile)
 			writer.WriteString(msg + "\n")
+			writer.Flush()
 			return msg
 		}
 	default:
