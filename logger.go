@@ -2,6 +2,8 @@ package logger
 
 import (
 	"fmt"
+	"os"
+	"time"
 )
 
 var Config LoggerConfig = LoggerConfig{
@@ -9,44 +11,47 @@ var Config LoggerConfig = LoggerConfig{
 	Server: "",
 }
 
+var logFile *os.File
+
+func init() {
+	fileName := "logs/log-" + time.Now().Format("2006-01-02-15:04:05 MST") + ".txt"
+	file, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0755)
+	if err != nil {
+		fmt.Println(err)
+	}
+	logFile = file
+}
+
 func Info(msg string) string {
 	message := constructLogFormat(info, msg)
-	builtMsg := msgBuilder(message, foreground, slowblink, _AQUA)
-	fmt.Println(builtMsg)
-	return builtMsg
+	return msgBuilder(message, foreground, slowblink, _AQUA)
 }
 
 func Warn(msg string) string {
 	message := constructLogFormat(warn, msg)
-	builtMsg := msgBuilder(message, foreground, slowblink, _YELLOW)
-	fmt.Println(builtMsg)
-	return builtMsg
+	return msgBuilder(message, foreground, slowblink, _YELLOW)
 }
 
 func Error(msg string) string {
 	message := constructLogFormat(error_, msg)
-	builtMsg := msgBuilder(message, foreground, slowblink, _RED)
-	fmt.Println(builtMsg)
-	return builtMsg
+	return msgBuilder(message, foreground, slowblink, _RED)
 }
 
 func Fatal(msg string) string {
 	message := constructLogFormat(fatal, msg)
-	builtMsg := msgBuilder(message, foreground, slowblink, _DARKEST_RED)
-	fmt.Println(builtMsg)
-	return builtMsg
+	return msgBuilder(message, foreground, slowblink, _DARKEST_RED)
 }
 
 func Debug(msg string) string {
 	message := constructLogFormat(debug, msg)
-	builtMsg := msgBuilder(message, foreground, slowblink, _MAGENTA)
-	fmt.Println(builtMsg)
-	return builtMsg
+	return msgBuilder(message, foreground, slowblink, _MAGENTA)
 }
 
 func DebugRGB(msg string, rgb RGBCode) string {
 	message := constructLogFormat(debug, msg)
-	builtMsg := msgBuilderRGB(message, foreground, rgb)
-	fmt.Println(builtMsg)
-	return builtMsg
+	return msgBuilderRGB(message, foreground, rgb)
+}
+
+func StopLogging() {
+	logFile.Close()
 }
