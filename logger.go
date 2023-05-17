@@ -4,6 +4,11 @@ import (
 	"fmt"
 )
 
+var Config LoggerConfig = LoggerConfig{
+	Out:    TERMINAL,
+	Server: "",
+}
+
 func Info(msg string) string {
 	message := constructLogFormat(info, msg)
 	builtMsg := msgBuilder(message, foreground, slowblink, _AQUA)
