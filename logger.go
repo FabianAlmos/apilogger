@@ -3,7 +3,6 @@ package logger
 import "fmt"
 
 type escCode int8
-type msgOption string
 
 const (
 	reset      escCode = 0
@@ -13,7 +12,7 @@ const (
 	background escCode = 48
 )
 
-func optionBuilder(codes ...escCode) msgOption {
+func optionBuilder(codes ...escCode) string {
 	res := "\033["
 	for index, code := range codes {
 		if index < len(codes)-1 {
@@ -23,11 +22,11 @@ func optionBuilder(codes ...escCode) msgOption {
 		}
 	}
 	res += "m"
-	return msgOption(res)
+	return res
 }
 
 func msgBuilder(msg string, codes ...escCode) string {
-	resetOption := string(optionBuilder(reset))
-	style := string(optionBuilder(codes...))
+	resetOption := optionBuilder(reset)
+	style := optionBuilder(codes...)
 	return style + msg + resetOption
 }
