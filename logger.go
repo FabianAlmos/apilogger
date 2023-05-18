@@ -2,7 +2,7 @@ package logger
 
 import "fmt"
 
-type escCode int8
+type escCode uint8
 
 const (
 	reset      escCode = 0
@@ -11,6 +11,10 @@ const (
 	foreground escCode = 38
 	background escCode = 48
 )
+
+type RGBCode struct {
+	r, g, b escCode
+}
 
 func optionBuilder(codes ...escCode) string {
 	res := "\033["
@@ -28,5 +32,11 @@ func optionBuilder(codes ...escCode) string {
 func msgBuilder(msg string, codes ...escCode) string {
 	resetOption := optionBuilder(reset)
 	style := optionBuilder(codes...)
+	return style + msg + resetOption
+}
+
+func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
+	resetOption := optionBuilder(reset)
+	style := optionBuilder(code, dim, rgb.r, rgb.g, rgb.b)
 	return style + msg + resetOption
 }
