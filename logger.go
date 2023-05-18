@@ -21,6 +21,7 @@ const (
 	_DARK_RED escCode = 1
 	_RED      escCode = 9
 	_YELLOW   escCode = 11
+	_MAGENTA  escCode = 13
 	_AQUA     escCode = 14
 )
 
@@ -88,7 +89,12 @@ func Fatal(msg string) {
 	fmt.Println(msgBuilder(message, foreground, slowblink, _DARK_RED))
 }
 
-func Debug(msg string, rgb RGBCode) {
+func Debug(msg string) {
+	message := constructLogFormat(debug, msg)
+	fmt.Println(msgBuilder(message, foreground, slowblink, _MAGENTA))
+}
+
+func Debugr(msg string, rgb RGBCode) {
 	message := constructLogFormat(debug, msg)
 	fmt.Println(msgBuilderRGB(message, foreground, rgb))
 }
