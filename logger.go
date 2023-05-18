@@ -18,9 +18,9 @@ const (
 
 // colors
 const (
-	RED    escCode = 9
-	YELLOW escCode = 11
-	AQUA   escCode = 14
+	_RED    escCode = 9
+	_YELLOW escCode = 11
+	_AQUA   escCode = 14
 )
 
 type RGBCode struct {
@@ -67,15 +67,15 @@ func constructLogFormat(level logLevel, msg string) string {
 
 func Info(msg string) {
 	message := constructLogFormat(info, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, AQUA))
+	fmt.Println(msgBuilder(message, foreground, slowblink, _AQUA))
 }
 
 func Warn(msg string) {
 	message := constructLogFormat(warn, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, YELLOW))
+	fmt.Println(msgBuilder(message, foreground, slowblink, _YELLOW))
 }
 
 func Error(msg string) {
 	message := constructLogFormat(error_, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, RED))
+	fmt.Println(msgBuilder(message, foreground, slowblink, _RED))
 }
