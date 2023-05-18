@@ -5,7 +5,7 @@ import (
 )
 
 func init() {
-	// Configuration for the logger must be written in the init function!
+	// Configuration for the logger must be written in the init function, before calling 'logger.Start()'!
 	// Configuration can be set by assigning a new 'logger.LoggerConfig' struct to the global variable 'logger.Config'.
 	// Or by setting the fields of 'logger.Config' directly like 'logger.Config.Out = logger.ALL'.
 
