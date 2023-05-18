@@ -18,9 +18,10 @@ const (
 
 // colors
 const (
-	_RED    escCode = 9
-	_YELLOW escCode = 11
-	_AQUA   escCode = 14
+	_DARK_RED escCode = 1
+	_RED      escCode = 9
+	_YELLOW   escCode = 11
+	_AQUA     escCode = 14
 )
 
 type RGBCode struct {
@@ -33,6 +34,8 @@ const (
 	info   logLevel = "INFO"
 	warn   logLevel = "WARN"
 	error_ logLevel = "ERROR"
+	fatal  logLevel = "FATAL"
+	debug  logLevel = "DEBUG"
 )
 
 func optionBuilder(codes ...escCode) string {
@@ -78,4 +81,14 @@ func Warn(msg string) {
 func Error(msg string) {
 	message := constructLogFormat(error_, msg)
 	fmt.Println(msgBuilder(message, foreground, slowblink, _RED))
+}
+
+func Fatal(msg string) {
+	message := constructLogFormat(fatal, msg)
+	fmt.Println(msgBuilder(message, foreground, slowblink, _DARK_RED))
+}
+
+func Debug(msg string, rgb RGBCode) {
+	message := constructLogFormat(debug, msg)
+	fmt.Println(msgBuilderRGB(message, foreground, rgb))
 }
