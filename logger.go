@@ -17,11 +17,11 @@ const (
 
 // colors
 const (
-	_DARK_RED escCode = 1
-	_RED      escCode = 9
-	_YELLOW   escCode = 11
-	_MAGENTA  escCode = 13
-	_AQUA     escCode = 14
+	_RED         escCode = 9
+	_YELLOW      escCode = 11
+	_MAGENTA     escCode = 13
+	_AQUA        escCode = 14
+	_DARKEST_RED escCode = 52
 )
 
 type RGBCode struct {
@@ -85,7 +85,7 @@ func Error(msg string) {
 
 func Fatal(msg string) {
 	message := constructLogFormat(fatal, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, _DARK_RED))
+	fmt.Println(msgBuilder(message, foreground, slowblink, _DARKEST_RED))
 }
 
 func Debug(msg string) {
