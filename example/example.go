@@ -35,10 +35,10 @@ func main() {
 	// If the logger isn't stopped than the 'FILE' option won't work!
 	defer logger.Stop()
 
-	logger.Info("INFO")
-	logger.Warn("WARN")
-	logger.Error("ERROR")
-	logger.Fatal("FATAL", 0)
+	logger.Info("INFO", "dataInfo")
+	logger.Warn("WARN", "dataWarn", "dataWarn1")
+	logger.Error("ERROR", "dataErr")
+	logger.Fatal("FATAL", "panic value", "data", "data1", "data2")
 	logger.Debug("DEBUG")
 	logger.DebugRGB("DEBUG_RGB", logger.RGBCode{R: 3, G: 252, B: 107})
 }
