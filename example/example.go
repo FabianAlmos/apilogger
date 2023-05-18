@@ -38,7 +38,7 @@ func main() {
 	logger.Info("INFO")
 	logger.Warn("WARN")
 	logger.Error("ERROR")
-	logger.Fatal("FATAL")
+	logger.Fatal("FATAL", 0)
 	logger.Debug("DEBUG")
 	logger.DebugRGB("DEBUG_RGB", logger.RGBCode{R: 3, G: 252, B: 107})
 }
