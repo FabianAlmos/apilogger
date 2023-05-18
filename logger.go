@@ -46,11 +46,19 @@ func Fatal(msg string, p any, data ...any) string {
 }
 
 func Debug(msg string, data ...any) string {
-	message := constructLogFormat(debug, msg, data...)
-	return msgBuilder(message, foreground, slowblink, _MAGENTA)
+	if Config.InDebug {
+		message := constructLogFormat(debug, msg, data...)
+		return msgBuilder(message, foreground, slowblink, _MAGENTA)
+	} else {
+		return Warn("NOT IN DEBUG MODE!")
+	}
 }
 
 func DebugRGB(msg string, rgb RGBCode, data ...any) string {
-	message := constructLogFormat(debug, msg, data...)
-	return msgBuilderRGB(message, foreground, rgb)
+	if Config.InDebug {
+		message := constructLogFormat(debug, msg, data...)
+		return msgBuilderRGB(message, foreground, rgb)
+	} else {
+		return Warn("NOT IN DEBUG MODE!")
+	}
 }
