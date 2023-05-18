@@ -94,7 +94,7 @@ func Debug(msg string) {
 	fmt.Println(msgBuilder(message, foreground, slowblink, _MAGENTA))
 }
 
-func Debugr(msg string, rgb RGBCode) {
+func DebugRGB(msg string, rgb RGBCode) {
 	message := constructLogFormat(debug, msg)
 	fmt.Println(msgBuilderRGB(message, foreground, rgb))
 }
