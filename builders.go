@@ -32,7 +32,7 @@ func msgBuilder(msg string, codes ...escCode) string {
 	case Config.Out&TERMINAL == TERMINAL:
 		{
 			fmt.Println(builtMsg)
-			return builtMsg
+			return msg
 		}
 	case Config.Out&FILE == FILE:
 		{
@@ -58,7 +58,7 @@ func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
 	case Config.Out&TERMINAL == TERMINAL:
 		{
 			fmt.Println(builtMsg)
-			return builtMsg
+			return msg
 		}
 	case Config.Out&FILE == FILE:
 		{
