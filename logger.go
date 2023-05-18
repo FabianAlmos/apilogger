@@ -2,6 +2,7 @@ package logger
 
 import (
 	"fmt"
+	"io/fs"
 	"os"
 	"time"
 )
@@ -15,8 +16,10 @@ var logFile *os.File = new(os.File)
 
 func init() {
 	if Config.Out&FILE == FILE {
-		fileName := "logs/log-" + time.Now().Format("2006-01-02-15:04:05 MST") + ".txt"
-		file, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0755)
+		var perms fs.FileMode = 0755
+		_ = os.Mkdir("logs", perms)
+		fileName := "logs/log-" + time.Now().Format("2006-01-02-15-04-05MST") + ".txt"
+		file, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, perms)
 		if err != nil {
 			fmt.Println(err)
 		}
