@@ -29,12 +29,12 @@ func msgBuilder(msg string, codes ...escCode) string {
 	style := optionBuilder(codes...)
 	builtMsg := style + msg + resetOption
 	switch {
-	case Config.Out&TERMINAL == TERMINAL:
+	case Config.Out&TERMINAL == TERMINAL && Config.Out != ALL:
 		{
 			fmt.Println(builtMsg)
 			return msg
 		}
-	case Config.Out&FILE == FILE:
+	case Config.Out&FILE == FILE && Config.Out != ALL:
 		{
 			write(msg)
 			return msg
