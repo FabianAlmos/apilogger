@@ -4,32 +4,44 @@ import (
 	"fmt"
 )
 
-func Info(msg string) {
+func Info(msg string) string {
 	message := constructLogFormat(info, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, _AQUA))
+	builtMsg := msgBuilder(message, foreground, slowblink, _AQUA)
+	fmt.Println(builtMsg)
+	return builtMsg
 }
 
-func Warn(msg string) {
+func Warn(msg string) string {
 	message := constructLogFormat(warn, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, _YELLOW))
+	builtMsg := msgBuilder(message, foreground, slowblink, _YELLOW)
+	fmt.Println(builtMsg)
+	return builtMsg
 }
 
-func Error(msg string) {
+func Error(msg string) string {
 	message := constructLogFormat(error_, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, _RED))
+	builtMsg := msgBuilder(message, foreground, slowblink, _RED)
+	fmt.Println(builtMsg)
+	return builtMsg
 }
 
-func Fatal(msg string) {
+func Fatal(msg string) string {
 	message := constructLogFormat(fatal, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, _DARKEST_RED))
+	builtMsg := msgBuilder(message, foreground, slowblink, _DARKEST_RED)
+	fmt.Println(builtMsg)
+	return builtMsg
 }
 
-func Debug(msg string) {
+func Debug(msg string) string {
 	message := constructLogFormat(debug, msg)
-	fmt.Println(msgBuilder(message, foreground, slowblink, _MAGENTA))
+	builtMsg := msgBuilder(message, foreground, slowblink, _MAGENTA)
+	fmt.Println(builtMsg)
+	return builtMsg
 }
 
-func DebugRGB(msg string, rgb RGBCode) {
+func DebugRGB(msg string, rgb RGBCode) string {
 	message := constructLogFormat(debug, msg)
-	fmt.Println(msgBuilderRGB(message, foreground, rgb))
+	builtMsg := msgBuilderRGB(message, foreground, rgb)
+	fmt.Println(builtMsg)
+	return builtMsg
 }
