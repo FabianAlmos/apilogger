@@ -1,5 +1,13 @@
 package logger
 
+// logger outputs
+const (
+	TERMINAL logOutput = 0x01
+	FILE     logOutput = 0x02
+	//NETLOG   logOutput = 0x04 //TODO: Add capability to log into a server for an api for an example
+	ALL logOutput = 0x08
+)
+
 // option codes
 const (
 	reset      escCode = 0
