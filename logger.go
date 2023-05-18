@@ -25,32 +25,32 @@ func Stop() {
 }
 
 func Info(msg string, data ...any) string {
-	message := constructLogFormat(info, msg+fmt.Sprintln(data...))
+	message := constructLogFormat(info, msg, fmt.Sprintln(data...))
 	return msgBuilder(message, foreground, slowblink, _AQUA)
 }
 
 func Warn(msg string, data ...any) string {
-	message := constructLogFormat(warn, msg+fmt.Sprintln(data...))
+	message := constructLogFormat(warn, msg, fmt.Sprintln(data...))
 	return msgBuilder(message, foreground, slowblink, _YELLOW)
 }
 
 func Error(msg string, data ...any) string {
-	message := constructLogFormat(error_, msg+fmt.Sprintln(data...))
+	message := constructLogFormat(error_, msg, fmt.Sprintln(data...))
 	return msgBuilder(message, foreground, slowblink, _RED)
 }
 
 func Fatal(msg string, p any, data ...any) string {
-	message := constructLogFormat(fatal, msg+fmt.Sprintln(data...))
+	message := constructLogFormat(fatal, msg, fmt.Sprintln(data...))
 	msgBuilder(message, foreground, slowblink, _DARKEST_RED)
 	panic(p)
 }
 
 func Debug(msg string, data ...any) string {
-	message := constructLogFormat(debug, msg+fmt.Sprintln(data...))
+	message := constructLogFormat(debug, msg, fmt.Sprintln(data...))
 	return msgBuilder(message, foreground, slowblink, _MAGENTA)
 }
 
 func DebugRGB(msg string, rgb RGBCode, data ...any) string {
-	message := constructLogFormat(debug, msg+fmt.Sprintln(data...))
+	message := constructLogFormat(debug, msg, fmt.Sprintln(data...))
 	return msgBuilderRGB(message, foreground, rgb)
 }
