@@ -1,6 +1,9 @@
 package logger
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+)
 
 func optionBuilder(codes ...escCode) string {
 	res := "\033["
@@ -18,11 +21,55 @@ func optionBuilder(codes ...escCode) string {
 func msgBuilder(msg string, codes ...escCode) string {
 	resetOption := optionBuilder(reset)
 	style := optionBuilder(codes...)
-	return style + msg + resetOption
+	builtMsg := style + msg + resetOption
+	switch {
+	case Config.Out&TERMINAL == TERMINAL:
+		{
+			fmt.Println(builtMsg)
+			return builtMsg
+		}
+	case Config.Out&FILE == FILE:
+		{
+			writer := bufio.NewWriter(logFile)
+			writer.WriteString(msg + "\n")
+			return msg
+		}
+	case Config.Out&ALL == ALL:
+		{
+			fmt.Println(builtMsg)
+			writer := bufio.NewWriter(logFile)
+			writer.WriteString(msg + "\n")
+			return msg
+		}
+	default:
+		return msg
+	}
 }
 
 func msgBuilderRGB(msg string, code escCode, rgb RGBCode) string {
 	resetOption := optionBuilder(reset)
 	style := optionBuilder(code, dim, rgb.R, rgb.G, rgb.B)
-	return style + msg + resetOption
+	builtMsg := style + msg + resetOption
+	switch {
+	case Config.Out&TERMINAL == TERMINAL:
+		{
+			fmt.Println(builtMsg)
+			return builtMsg
+		}
+	case Config.Out&FILE == FILE:
+		{
+			writer := bufio.NewWriter(logFile)
+			writer.WriteString(msg + "\n")
+			return msg
+		}
+	case Config.Out&ALL == ALL:
+		{
+			fmt.Println(builtMsg)
+			writer := bufio.NewWriter(logFile)
+			writer.WriteString(msg + "\n")
+			return msg
+		}
+	default:
+		return msg
+	}
 }
